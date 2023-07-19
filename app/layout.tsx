@@ -20,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang="pl">
+      <html lang="en">
         <body className={inter.className}>
           <ToasterProvider />
           <ModalProvider />

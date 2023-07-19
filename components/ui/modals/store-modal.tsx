@@ -31,7 +31,9 @@ export const StoreModal = () => {
         try {
             setLoading(true)
             const response = await axios.post("/api/stores", values)
-            toast.success("Store saved!")
+
+            //must be refreshed in that way, causes async problems if not
+            window.location.assign(`/${response.data.id}`)
         }
         catch (error) {
             toast.error("Something went wrong!")
