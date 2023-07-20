@@ -3,12 +3,12 @@
 import { Store } from '@prisma/client';
 import React, { useState } from 'react'
 import * as z from "zod"
-import { set, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'react-hot-toast';
 import { useParams, useRouter } from 'next/navigation';
 
-import Heading from './heading';
+import Heading from '@/components/ui/heading';
 import { Button } from '@/components/ui/button';
 import { Trash } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
@@ -17,6 +17,7 @@ import { Input } from '@/components/ui/input';
 import axios from 'axios';
 import AlertModal from '@/components/ui/modals/alert-modal';
 import ApiAlert from '@/components/ui/api-alert';
+import { useOrigin } from '@/hooks/use-origin';
 
 interface SettingsFormProps {
     initData: Store
@@ -35,6 +36,7 @@ const SettingsForm: React.FC<SettingsFormProps> = ({ initData }) => {
     const [loading, setLoading] = useState(false)
     const params = useParams()
     const router = useRouter()
+    const origin = useOrigin()
 
     const form = useForm<SettingsFormValues>({
         resolver: zodResolver(formSchema),
