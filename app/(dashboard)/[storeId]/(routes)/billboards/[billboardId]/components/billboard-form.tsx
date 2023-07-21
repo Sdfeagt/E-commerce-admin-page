@@ -128,7 +128,6 @@ const BillboardForm: React.FC<BillboardFormProps> = ({ initData }) => {
                     </Button>
                 </form>
             </Form>
-            <Separator />
         </>
     )
 }
