@@ -2,7 +2,7 @@ import prismadb from "@/lib/prismadb";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
-const PATCH = async(req: Request, {params}: {params: {storeId: string, billboardId: string}}) =>{
+const PATCH = async(req: Request, {params}: {params: {storeId: string, sizeId: string}}) =>{
     try{
          const {userId} = auth()
          if(!userId){
@@ -10,16 +10,16 @@ const PATCH = async(req: Request, {params}: {params: {storeId: string, billboard
          }
 
          const body = await req.json()
-         const {label, imageUrl} = body
+         const {name, value} = body
 
-         if(!label){
-            return new NextResponse("Label is requierd!", {status: 400})
+         if(!name){
+            return new NextResponse("Name is requierd!", {status: 400})
          }
-         if(!imageUrl){
-            return new NextResponse("Image url is requierd!", {status: 400})
+         if(!value){
+            return new NextResponse("Value is requierd!", {status: 400})
          }
-         if(!params.billboardId){
-            return new NextResponse("Billboard id is requierd!", {status: 400})
+         if(!params.sizeId){
+            return new NextResponse("Size id is requierd!", {status: 400})
          }
 
          const storeByUserId = await prismadb.store.findFirst({
@@ -33,32 +33,32 @@ const PATCH = async(req: Request, {params}: {params: {storeId: string, billboard
         }
 
 
-         const billboard = await prismadb.billboard.updateMany({
+         const size = await prismadb.size.updateMany({
             where: {
-                id: params.billboardId
+                id: params.sizeId
                 },
             data:{
-               label,
-               imageUrl
+               name,
+               value
             }
          })
-         return NextResponse.json(billboard)
+         return NextResponse.json(size)
 
     }
     catch(error){
-        console.log("[BILLBOARD_PATCH]", error);
+        console.log("[SIZE_PATCH]", error);
         return new NextResponse("Internal error", {status: 500})
     }
 }
 
-const DELETE = async(req: Request, {params}: {params: {storeId: string, billboardId: string}}) =>{
+const DELETE = async(req: Request, {params}: {params: {storeId: string, sizeId: string}}) =>{
     try{
          const {userId} = auth()
          if(!userId){
             return new NextResponse("Unauthorized", {status: 401})
          }
-         if(!params.billboardId){
-            return new NextResponse("Billboard id is requierd!", {status: 400})
+         if(!params.sizeId){
+            return new NextResponse("Size id is requierd!", {status: 400})
          }
 
          const storeByUserId = await prismadb.store.findFirst({
@@ -72,38 +72,38 @@ const DELETE = async(req: Request, {params}: {params: {storeId: string, billboar
         }
 
 
-         const billboard = await prismadb.billboard.deleteMany({
+         const size = await prismadb.size.deleteMany({
             where: {
-                id: params.billboardId
+                id: params.sizeId
                 }
          })
-         return NextResponse.json(billboard)
+         return NextResponse.json(size)
 
     }
     catch(error){
-        console.log("[BILLBOARD_DELETE]", error);
+        console.log("[SIZE_DELETE]", error);
         return new NextResponse("Internal error", {status: 500})
     }
 }
 
-const GET = async(req: Request, {params}: {params: {billboardId: string}}) =>{
+const GET = async(req: Request, {params}: {params: {sizeId: string}}) =>{
     try{
 
-         if(!params.billboardId){
-            return new NextResponse("Billboard id is requierd!", {status: 400})
+         if(!params.sizeId){
+            return new NextResponse("Size id id is requierd!", {status: 400})
          }
 
 
-         const billboard = await prismadb.billboard.findUnique({
+         const size = await prismadb.size.findUnique({
             where: {
-                id: params.billboardId
+                id: params.sizeId
                 }
          })
-         return NextResponse.json(billboard)
+         return NextResponse.json(size)
 
     }
     catch(error){
-        console.log("[BILLBOARD_GET]", error);
+        console.log("[SIZE_GET]", error);
         return new NextResponse("Internal error", {status: 500})
     }
 }
