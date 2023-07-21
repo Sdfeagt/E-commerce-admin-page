@@ -16,8 +16,6 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input';
 import axios from 'axios';
 import AlertModal from '@/components/ui/modals/alert-modal';
-import ApiAlert from '@/components/ui/api-alert';
-import { useOrigin } from '@/hooks/use-origin';
 import ImageUpload from '@/components/ui/image-upload';
 
 interface BillboardFormProps {
@@ -45,7 +43,6 @@ const BillboardForm: React.FC<BillboardFormProps> = ({ initData }) => {
 
     const params = useParams()
     const router = useRouter()
-    const origin = useOrigin()
 
     const form = useForm<BillboardFormValues>({
         resolver: zodResolver(formSchema),
