@@ -7,11 +7,11 @@ import { BillboardColumn } from './components/columns'
 
 
 
-const BillboardsPage = async ({ params }: { params: { storeid: string } }) => {
+const BillboardsPage = async ({ params }: { params: { storeId: string } }) => {
 
     const billboards = await prismadb.billboard.findMany({
         where: {
-            storeId: params.storeid
+            storeId: params.storeId
         },
         orderBy: {
             createdAt: `desc`

@@ -8,11 +8,11 @@ import { formatter } from '@/lib/utils'
 
 
 
-const ProductsPage = async ({ params }: { params: { storeid: string } }) => {
+const ProductsPage = async ({ params }: { params: { storeId: string } }) => {
 
     const products = await prismadb.product.findMany({
         where: {
-            storeId: params.storeid
+            storeId: params.storeId
         },
         include: {
             category: true,
