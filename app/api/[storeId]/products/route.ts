@@ -93,6 +93,7 @@ export async function GET(
         const colorId = searchParams.get("colorId") || undefined
         const sizeId = searchParams.get("sizeId") || undefined
         const isFeatured = searchParams.get("isFeatured")
+
  
         if(!params.storeId){
             return new NextResponse("Store ID is requierd", {status: 400})

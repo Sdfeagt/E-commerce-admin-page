@@ -98,6 +98,9 @@ const GET = async(req: Request, {params}: {params: {categoryId: string}}) =>{
          const category = await prismadb.category.findUnique({
             where: {
                 id: params.categoryId
+                },
+                include:{
+                    billboard: true,
                 }
          })
          return NextResponse.json(category)
