@@ -104,7 +104,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initData, categories, sizes, 
     const onDelete = async () => {
         try {
             setLoading(true)
-            await axios.delete(`/api/${params.storeId}/product/${params.productId}`)
+            await axios.delete(`/api/${params.storeId}/products/${params.productId}`)
             router.refresh()
             router.push(`/${params.storeId}/products`)
             toast.success("Product deleted")
