@@ -16,7 +16,7 @@ This project uses following technologies
 
 ## Demo
 
-Curious to see our E-Commerce Admin Panel in action? Check out an interactive demo [here](e-commerce-admin-page.vercel.app).
+Curious to see E-Commerce Admin Panel in action? Check out an interactive demo [here](e-commerce-admin-page.vercel.app).
 
 ## License
 
