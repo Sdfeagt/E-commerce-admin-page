@@ -114,7 +114,7 @@ const DELETE = async(req: Request, {params}: {params: {storeId: string, productI
         }
 
 
-         const product = await prismadb.product.deleteMany({
+         const product = await prismadb.product.delete({
             where: {
                 id: params.productId
                 }
